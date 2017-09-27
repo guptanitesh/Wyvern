@@ -1,0 +1,11 @@
+<tr>
+	<td><%= link_to category.name, category_path(category.id) %></td>
+	<td><%= link_to 'Leaderboard', '/leaderboard/category?cid='+category.id.to_s%></td>
+    
+    <% if current_user.admin? %>
+	<td><%= link_to 'Edit', edit_category_path(category) %></td>
+	<td><%= link_to "delete", category, method: :delete,
+	data: { confirm: "You sure?" } %></td>
+    <% end %>
+
+</tr>

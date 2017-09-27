@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  quizz: one
+  question: one
+  score: 1
+  ans: MyString
+
+two:
+  user: two
+  quizz: two
+  question: two
+  score: 1
+  ans: MyString

@@ -1,0 +1,25 @@
+<% provide(:title, 'All categories') %>
+<br/><br/>
+
+<% if current_user.admin? %>
+<p class ="text-right"><%= link_to "Add New Subcategory", new_subcategory_path, class: "btn btn-primary" %></p>
+<% end %>
+
+<h1>All subcategories</h1>
+
+<%= will_paginate %>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Leaderboard</th>
+		</tr>
+	</thead>
+	<tbody>
+		  <%= render @subcategories %>
+	</tbody>
+</table>
+
+
+<%= will_paginate %>

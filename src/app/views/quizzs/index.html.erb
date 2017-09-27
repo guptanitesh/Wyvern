@@ -1,0 +1,25 @@
+<% provide(:title, 'All Quizzes') %>
+<br/><br/>
+
+<% if current_user.admin? %>
+<p class ="text-right"><%= link_to "Add New Quiz", new_quizz_path, class: "btn btn-primary" %></p>
+<% end %>
+
+<h1>All Quizzes</h1>
+
+<%= will_paginate %>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Leaderboard</th>
+			<th>Score</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @quizzs %>
+	</tbody>
+</table>
+
+<%= will_paginate %>

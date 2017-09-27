@@ -1,0 +1,92 @@
+   <div class="col-md-6 col-md-offset-3">
+   	<% if @questions.any? %>
+   	<% i = 0 %>
+   	<% @questions.each do |question| %>
+      <div class="well">
+        <% @ans = @answered.select{ |element| element[:question_id] == question.id }.first %>
+        <% if !@ans %>
+        <% @ans = @answers[i] %>
+        <% end %>
+        <% @ans.ans %>
+        <%= form_for(@answers[i]) do |f| %>
+        <table class="center table-hover" style="border-collapse: collapse;">
+          <tr>
+            <td colspan=2 align="left"><%= 'Question: ' + (i+1).to_s%></a></td>
+         </tr>
+
+         <tr rowspan=2 >
+            <td colspan=2 >  <%= question.body %> </td>
+         </tr>
+         
+         <%if question.ftype.downcase == 'image'%>
+         <tr>
+            <td colspan = 2> <%= image_tag question.asset, width: "320", height: "320"%></td>
+         </tr>
+         <%end%>
+         
+         <%if question.ftype.downcase == 'video'%>
+         <tr>
+            <td colspan = 2> <%= video_tag question.asset, width: "320", height: "320", controls: true %></td>
+         </tr>
+         <%end%>
+
+         <%if question.qtype%>
+         <tr>
+            <td>  <%= f.check_box 'ans1', value: question.option1, class: 'answer form-control', :checked => (@ans.ans == 'A' || @ans.ans == 'AB' || @ans.ans == 'AC'|| @ans.ans == 'AD' || @ans.ans == 'ABC' || @ans.ans == 'ABD' || @ans.ans == 'ACD' ||@ans.ans == 'ABCD' ) %> </td>
+            <td>  <%= label :option1,question.option1 %> </td>
+            <tr>
+            </tr>
+            <td>  <%= f.check_box 'ans2', value: question.option2, class: 'answer form-control', :checked => (@ans.ans == 'B' || @ans.ans == 'AB' || @ans.ans == 'BC'|| @ans.ans == 'BD' || @ans.ans == 'ABC' || @ans.ans == 'ABD' || @ans.ans == 'BCD' ||@ans.ans == 'ABCD')%> </td>
+            <td>  <%= label :option2, question.option2 %> </td>
+         </tr>
+         <tr>
+            <td>  <%= f.check_box 'ans3', value: question.option3, class: 'answer form-control', :checked => (@ans.ans == 'C' || @ans.ans == 'BC' || @ans.ans == 'CD'|| @ans.ans == 'AC' || @ans.ans == 'ABC' || @ans.ans == 'BCD' || @ans.ans == 'ACD' ||@ans.ans == 'ABCD')%> </td>
+            <td>  <%= label :option3, question.option3 %> </td>
+         </tr>
+         <tr>
+            <td>  <%= f.check_box 'ans4', value: question.option4, class: 'answer form-control', :checked => (@ans.ans == 'D' || @ans.ans == 'BD' || @ans.ans == 'CD'|| @ans.ans == 'AD' || @ans.ans == 'BCD' || @ans.ans == 'ABD' || @ans.ans == 'ACD' ||@ans.ans == 'ABCD')%> </td>
+            <td>  <%= label :option4, question.option4 %> </td>
+         </tr>
+
+         <%else%>
+
+         <tr>
+            <td>  <%= f.radio_button :ans0, question.option1, value: question.option1, class: 'answer form-control', :checked => (@ans.ans == 'A')%> </td>
+            <td>  <%= label :option1,question.option1 %> </td>
+            <tr>
+            </tr>
+            <td>  <%= f.radio_button :ans0, question.option2, value: question.option2, class: 'answer form-control', :checked => (@ans.ans == 'B')%> </td>
+            <td>  <%= label :option2, question.option2 %> </td>
+         </tr>
+         <tr>
+            <td>  <%= f.radio_button :ans0, question.option3, value: question.option3, class: 'answer form-control', :checked => (@ans.ans == 'C')%> </td>
+            <td>  <%= label :option3, question.option3 %> </td>
+         </tr>
+         <tr>
+            <td>  <%= f.radio_button :ans0, question.option4, value: question.option4, class: 'answer form-control', :checked => (@ans.ans == 'D')%> </td>
+            <td>  <%= label :option4, question.option4 %> </td>
+
+
+
+            <%end%>
+         </tr>
+
+            <% i+=1 %>
+         </table>
+         <%= hidden_field_tag :question_id, question.id%>
+         <%= hidden_field_tag :quizz_id, @quizz.id%>
+         <br/>
+         <%= f.submit "Save Response", class: "button" %>
+         <br/> <br/> <br/> <br/> 
+
+      </div>
+
+         <% end %>   
+         <% end %>
+         <p align="right"><%= link_to "Check Result", '/result?qid='+@quizz.id.to_s, class: "btn  btn-success"%></p>
+      <br/> <br/>
+      <br/> <br/>
+
+      <% end %>
+   </div>
+   <script>

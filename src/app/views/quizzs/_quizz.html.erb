@@ -1,0 +1,26 @@
+<tr>
+
+	<td><%= link_to quizz.name, new_state_path({ quizz_id: quizz.id}) %></td>
+
+	<td><%= link_to 'Leaderboard', '/leaderboard/quizz?qid='+quizz.id.to_s%> </td>
+
+	<% @tp = @attempts.select{ |element| element[:quizz_id] == quizz.id }.first %>		
+	<% if !@tp %>
+	<td> - </td>
+	<td><%= link_to 'Attempt', new_state_path({ quizz_id: quizz.id}) %></td>
+	
+	<%else%>
+	<td><%= @tp.score%></td>
+	<td><%= link_to 'Reattempt', new_state_path({ quizz_id: quizz.id}) %></td>
+
+	<% end %>
+
+    <% if current_user.admin? %>
+	
+	<td><%= link_to 'Edit', edit_quizz_path(quizz) %></td>
+	<td><%= link_to "delete", quizz, method: :delete,
+	data: { confirm: "Are you sure?" } %></td>
+	
+	<% end %>
+
+</tr>

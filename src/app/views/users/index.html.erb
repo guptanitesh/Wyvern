@@ -1,0 +1,24 @@
+<% provide(:title, 'All users') %>
+<br/><br/>
+
+<% if current_user.admin? %>
+<p class ="text-right"><%= link_to "Add New User", new_user_path, class: "btn btn-primary" %></p>
+<% end %>
+
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Username</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <%= render @users %>
+	</tbody>
+</table>
+
+<%= will_paginate %>

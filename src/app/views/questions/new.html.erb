@@ -1,0 +1,63 @@
+<% provide(:title, 'Add Question') %>
+<br/><br/>
+
+<h1>New Question</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@question, url: '/questions/new') do |f| %>
+    <br/>    
+    <%= f.label :ftype %>
+    <%= f.text_field :ftype, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :body %>
+    <%= f.text_field :body, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :asset %>
+    <%= f.text_field :asset, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :option1 %>
+    <%= f.text_field :option1, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :option2 %>
+    <%= f.text_field :option2, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :option3 %>
+    <%= f.text_field :option3, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :option4 %>
+    <%= f.text_field :option4, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :answer %>
+    <%= f.text_field :answer, class: 'form-control' %>
+    <br/>    
+
+    <%= f.label :Quizz %>
+    <select name = "question[quizz_id]" id = "question_quizz_id" class = "form-control">
+      <% @quizzs.each do |quizz| %>
+      <option value = "<%= quizz.id %>">
+        <%= quizz.name %>
+      </option>
+      <% end %>
+    </select>
+    <br/>    
+
+    <%= f.label :Type %>
+    <select name = "question[qtype]" id = "question_qtype" class = "form-control">
+      <option value = "t">Multiple​ ​ choice​ ​ Multiple​ ​ Correct​</option>
+      <option value = "f">Multiple​ ​ choice​ ​ Single​ ​ Correct</option>
+    </select>
+    <br/>    
+    <br/>    
+
+    <%= f.submit "Create Question", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

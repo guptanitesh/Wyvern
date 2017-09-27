@@ -1,0 +1,22 @@
+<% provide(:title, 'Subcategory') %>
+<br/><br/>
+
+<h1>Quizzes</h1>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Leaderboard</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @quizzs.each do |quizz| %>	
+		<tr>
+			<td><%= link_to quizz.name, new_state_path({ quizz_id: quizz.id}) %></td><
+			<td><%= link_to 'Leaderboard', '/leaderboard/quizz?qid='+quizz.id.to_s%> </td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

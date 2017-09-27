@@ -1,0 +1,23 @@
+<% provide(:title, 'All questions') %>
+<br/><br/>
+
+<% if current_user.admin? %>
+<p class ="text-right"><%= link_to "Add New Question", new_question_path, class: "btn btn-primary" %></p>
+<% end %>
+
+<h1>All questions</h1>
+
+<%= will_paginate %>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render @questions %>
+	</tbody>
+</table>
+
+<%= will_paginate %>

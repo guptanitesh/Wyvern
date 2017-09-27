@@ -1,0 +1,25 @@
+<% provide(:title, 'New Subcategory') %>
+<h1>Add Subcategory</h1>
+<br/><br/>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@subcategory, url: '/subcategories/new') do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <br/>
+      
+      <%= f.label :category %>
+      <select name = "subcategory[category_id]" id = "subcategory_category_id" class = "form-control">
+      	<% @categories.each do |category| %>
+      		<option value = "<%= category.id %>">
+      			<%= category.name %>
+      		</option>
+      	<% end %>
+      </select>
+      <br/>
+      <%= f.submit "Create new subcategory", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

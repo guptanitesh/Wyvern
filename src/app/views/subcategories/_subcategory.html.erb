@@ -1,0 +1,12 @@
+<tr>
+
+	<td><%= link_to subcategory.name, subcategory_path(subcategory.id) %></td>
+	<td><%= link_to 'Leaderboard', '/leaderboard/subcategory?sid='+subcategory.id.to_s%></td>
+    
+    <% if current_user.admin? %>
+	<td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
+	<td><%= link_to "delete", subcategory, method: :delete,
+	data: { confirm: "You sure?" } %></td>
+  	<% end %>
+
+</tr>

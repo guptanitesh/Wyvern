@@ -1,0 +1,9 @@
+<tr>
+	<td><%= link_to question.body, question %></td>
+    <% if current_user.admin? %>
+	<td><%= link_to 'Edit', edit_question_path(question) %></td>
+	<td><%= link_to "delete", question, method: :delete,
+	data: { confirm: "You sure?" } %></td>
+  <% end %>
+
+</tr>
